@@ -14,6 +14,7 @@ thesaurus("Иван", "Мария", "Петр", "Илья")
 """
 # не стал тратить время на сортировку в этой задаче, сделал ее в 4 и 5
 
+
 def thesaurus(*args):
     my_list = {}
 
@@ -27,8 +28,7 @@ def thesaurus(*args):
         else:
             my_list[key] = [name_cap]
 
-    print(my_list)
+    return my_list
 
 
-thesaurus("иван", "мария", "Петр", "Илья")
-
+print(thesaurus("иван", "мария", "Петр", "Илья"))

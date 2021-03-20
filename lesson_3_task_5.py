@@ -17,6 +17,10 @@ get_jokes(2)
 """
 import random
 
+nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+
 
 def get_jokes(jokes=1, word_repeat=True):
     """
@@ -24,46 +28,47 @@ def get_jokes(jokes=1, word_repeat=True):
     @type jokes: int
     @param word_repeat: True(default) for repeat words in jokes, False to prevent it
     @type word_repeat: bool
-    @return: string compiled from 3 arrays
-    @rtype: str
+    @return: list of jokes
+    @rtype: list
     """
     if type(word_repeat) != bool:
         raise Exception(f'parameter word_repeat must be empty or bool')
 
-    nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
-    adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
-    adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+    nouns_copy = nouns.copy()
+    adverbs_copy = adverbs.copy()
+    adjectives_copy = adjectives.copy()
+    jokes_result = []
 
     for i in range(jokes):
         try:
-            noun = random.choice(nouns)
-            adverb = random.choice(adverbs)
-            adjective = random.choice(adjectives)
+            noun = random.choice(nouns_copy)
+            adverb = random.choice(adverbs_copy)
+            adjective = random.choice(adjectives_copy)
             joke = f'{noun} {adverb} {adjective}'
+            jokes_result.append(joke)
 
             if word_repeat is False:
-                nouns.pop(nouns.index(noun))
-                adverbs.pop(adverbs.index(adverb))
-                adjectives.pop(adjectives.index(adjective))
-
+                nouns_copy.pop(nouns_copy.index(noun))
+                adverbs_copy.pop(adverbs_copy.index(adverb))
+                adjectives_copy.pop(adjectives_copy.index(adjective))
         except IndexError:
-            print('Кончились слова для составления загадок')
+            print('Были использованы все слова для составления загадок')
             break
 
-        print(joke)
+    return jokes_result
 
 
 print('Вызов функции без аргументов:')
-get_jokes()
+print(get_jokes())
 
 print('\nВызов функции с первым аргументом:')
-get_jokes(5)
+print(get_jokes(5))
 
 print('\nВызов функции с обоими аргументами, без повтора слов'
       '\nи с превышением лимита слов:')
-get_jokes(7, word_repeat=False)
+print(get_jokes(7, word_repeat=False))
 
-# коментил, чтобы лишний раз не стреляло
+# закоментил, чтобы лишний раз не стреляло
 # print('\nВызов функции с обоими аргументами, без повтора слов'
 #       '\nи с превышением лимита слов:')
 # get_jokes(7, word_repeat='qqq')

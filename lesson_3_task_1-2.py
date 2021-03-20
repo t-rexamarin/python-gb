@@ -35,16 +35,15 @@ translations = {'zero': 'ноль',
 def num_translate_adv(item_to_translate):
     if item_to_translate.lower() in translations:
         if item_to_translate[0].isupper():
-            print(translations[f'{item_to_translate.lower()}'].capitalize())
+            return translations[f'{item_to_translate.lower()}'].capitalize()
         else:
-            print(translations[f'{item_to_translate.lower()}'])
+            return translations[f'{item_to_translate.lower()}']
     else:
-        print('None')
-        # return None
+        return None
 
 
 numbers = input('Введите значение(я) (zero, one, Two, thREE, four, five, sIX, Seven, Eight, Nine, ten, eleven): ')
 numbers = list(numbers.replace(' ', '').split(','))
 
 for number in numbers:
-    num_translate_adv(number)
+    print(num_translate_adv(number))

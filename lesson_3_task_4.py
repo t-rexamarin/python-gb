@@ -60,27 +60,27 @@ def thesaurus_adv(*args, key_sort='none'):
             for k2, v2 in sorted(v.items()):
                 v[k2] = sorted(v2)
             main_list_sorted[k] = v
-        print(main_list_sorted)
+        return main_list_sorted
     elif key_sort == 'desc':
         main_list_sorted = {}
         for k, v in sorted(main_list.items(), reverse=True):
             for k2, v2 in sorted(v.items()):
                 v[k2] = sorted(v2, reverse=True)
             main_list_sorted[k] = v
-        print(main_list_sorted)
+        return main_list_sorted
     else:
         # в этой задаче я не стал делать проверку на key_sort
         # и решил пусть все в одни ворота, если не одно из нужных значения
-        print(main_list)
+        return main_list
 
 
 print(f'Вывод без сортировки:')
-thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева")
+print(thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева"))
 
 print(f'\nВывод с сортировкой по возрастанию:')
-thesaurus_adv("инна серова", "иван сергеев", "питер альбертович", "петр алексеев", "илья иванов", "анна савельева",
-              key_sort='asc')
+print(thesaurus_adv("инна серова", "иван сергеев", "питер альбертович", "петр алексеев", "илья иванов",
+                    "анна савельева", key_sort='asc'))
 
 print(f'\nВывод с сортировкой по убыванию:')
-thesaurus_adv("инна серова", "иван сергеев", "питер альбертович", "петр алексеев", "илья иванов", "анна савельева",
-              key_sort='desc')
+print(thesaurus_adv("инна серова", "иван сергеев", "питер альбертович", "петр алексеев", "илья иванов",
+                    "анна савельева", key_sort='desc'))
