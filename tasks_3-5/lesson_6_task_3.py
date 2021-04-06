@@ -15,6 +15,7 @@
 # надо было читать сразу все, а не построчно. Но увы, не хватит времени поколдовать над этим сейчас
 
 import json
+import pickle
 
 
 def users_hobby(users_file, hobby_file):
@@ -24,13 +25,17 @@ def users_hobby(users_file, hobby_file):
             users_lines_count = sum(1 for _ in f_users)
             hobbies_lines_count = sum(1 for _ in f_hobby)
 
+            # надеюсь, я правильно понял требование
             if users_lines_count < hobbies_lines_count:
                 return 1
 
             f_users.seek(0)
             f_hobby.seek(0)
-            line_users = f_users.readline().strip('\n')
-            line_hobby = f_hobby.readline().strip('\n')
+
+            # явного указания не было, позволил себе немного преобразовать строки для красоты
+            # в 4 задании оставил строки без изменений
+            line_users = f_users.readline().strip('\n').replace(',', ' ')
+            line_hobby = f_hobby.readline().strip('\n').replace(',', ', ')
 
             while line_users:
                 if len(line_hobby) != 0:
@@ -38,16 +43,23 @@ def users_hobby(users_file, hobby_file):
                 else:
                     users_hobbies[line_users] = None
 
-                line_users = f_users.readline().strip('\n')
-                line_hobby = f_hobby.readline().strip('\n')
+                #  очень нравятся такие дубли, не успел придумать как обыграть
+                line_users = f_users.readline().strip('\n').replace(',', ' ')
+                line_hobby = f_hobby.readline().strip('\n').replace(',', ', ')
 
-        # return users_hobbies
     users_file_name, users_file_format = users_file.split('.')
     hobby_file_name, hobby_file_format = hobby_file.split('.')
-    result_file = f'{users_file_name}_{hobby_file_name}.json'
 
+    result_file = f'{users_file_name}_{hobby_file_name}.json'
+    result_file_pickle = f'{users_file_name}_{hobby_file_name}.pickle'
+
+    # не совсем очевидно из задачи, как именно надо
+    # pickle делал торопясь, т.к. понял, что преобразование в json запишет null, а не None
     with open(result_file, 'w', encoding='utf-8') as f_json:
         json.dump(users_hobbies, f_json, ensure_ascii=False)
+
+    with open(result_file_pickle, 'wb') as pickle_file:
+        pickle.dump(users_hobbies, pickle_file)
 
     return result_file
 
@@ -60,3 +72,14 @@ print(f'\nЮзеров больше чем хобби. Был создан {user
 
 users_less_than_hobbies = users_hobby('users.csv', 'hobby_more.csv')
 print(f'\nЮзеров меньше чем хобби. Файл не создан. Выход с кодом {users_less_than_hobbies}')
+
+# pickle
+print('\nВывод первого pickle объекта:')
+with open('users_hobby.pickle', 'rb') as pickle_r:
+    data = pickle.load(pickle_r)
+    print(data)
+
+print('\nВывод второго pickle объекта:')
+with open('users_more_hobby.pickle', 'rb') as pickle_r:
+    data = pickle.load(pickle_r)
+    print(data)

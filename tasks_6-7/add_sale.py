@@ -17,9 +17,15 @@ from helpers import bakery_file, is_digit
 sale_amount = argv[1]
 
 if is_digit(sale_amount):
-    with open(bakery_file, 'a', encoding='utf-8') as f:
-        # f.writelines(sale_amount + '\n')
-        file_writer = csv.writer(f)
-        file_writer.writerow([sale_amount])
+    # блин, забыл доделать этот кусок
+    try:
+        with open(bakery_file, 'a', encoding='utf-8') as f:
+            # f.writelines(sale_amount + '\n')
+            file_writer = csv.writer(f)
+            file_writer.writerow([sale_amount])
+            print(f'Запись "{sale_amount}" успешна добавлена.')
+    except Exception as e:
+        txt_msg = f'Произошло необработанное исключение: {e}'
+        print(txt_msg)
 else:
     print('Вы ввели не число.')

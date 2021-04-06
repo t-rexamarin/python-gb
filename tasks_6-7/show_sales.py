@@ -13,10 +13,10 @@
 # но я решил отказаться от такой условности
 # как итог, получилось то, что получилось
 
+import csv
 from sys import argv
 from sys import getsizeof
 from helpers import bakery_file, indexes_check
-import csv
 
 # file_size = getsizeof(bakery_file)
 # print(file_size)
@@ -33,9 +33,15 @@ def show_sales(file, start_from=None, stop_at=None):
 
     with open(file, encoding='utf-8') as f:
         file_reader = csv.reader(f)
+        # rows_count = sum(1 for _ in file_reader)
+
+        # восстанавливал в спешке, т.к. когда чистил коменты видимо стер этот блок
+        # if start_from is not None and start_from > rows_count:
+        #     txt_msg = [f'Запрошены результаты с {start_from} строки. Всего строк в файле: {rows_count}.']
+        #     return txt_msg
         # print(type(f))
         data = [line[0].strip('\n') for line in list(file_reader)[start_from:stop_at]]
-        print(getsizeof(file_reader))
+        # print(getsizeof(file_reader))
     return data
 
 
