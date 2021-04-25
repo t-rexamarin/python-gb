@@ -15,6 +15,7 @@
 Подсказка: сложение элементов матриц выполнять поэлементно.
 Первый элемент первой строки первой матрицы складываем с первым элементом первой строки второй матрицы и пр.
 """
+# это второй вариант, он выше кмк по-лучше
 
 
 class Matrix:
@@ -23,11 +24,6 @@ class Matrix:
 
     def __str__(self):
         str_result = ''
-        # for elem in self.my_list[:-1]:
-        #     str_result += ' '.join(str(char) for char in elem) + '\n'
-        # for elem in self.my_list[-1]:
-        #     str_result += ' '.join(str(char) for char in elem)
-        # print(len(self.my_list))
 
         # подумать над более компактной записью
         for i in range(len(self.my_list)):
@@ -42,7 +38,8 @@ class Matrix:
         if len(self.my_list) == len(other):
             for elem1, elem2 in zip(self.my_list, other):
                 if len(elem1) == len(elem2):
-                    matrix_line = [list(map(lambda x: x[0] + x[1], zip(elem1, elem2))) for elem1, elem2 in zip(self.my_list, other)]
+                    matrix_line = [list(map(lambda x: x[0] + x[1], zip(elem1, elem2)))
+                                   for elem1, elem2 in zip(self.my_list, other)]
                 else:
                     msg = f'Строки матриц должны быть одной длинны. Ошибка между {elem1} и {elem2}'
                     raise Exception(msg)
@@ -53,18 +50,6 @@ class Matrix:
             msg = f'Матрицы должны быть одного размера'
             raise Exception(msg)
             # raise AssertionError(msg)
-
-        # print(len(self.my_list), len(other))
-        # matrix_line = [sum(x) for x in zip(*self.my_list)]
-        # matrix_line = [sum(zip(elem1, elem2)) for elem1, elem2 in zip(self.my_list, other)]
-        # matrix_line = [list(map(lambda x: x[0] + x[1], zip(elem1, elem2))) for elem1, elem2 in zip(self.my_list, other)]
-
-        # тут получилось ты немного мне подсказал, мне бы ни за что не пришло в голову
-        # что можно вернуть так. Я дажне не совсем понимаю что именно тут происходит
-        # мы возвращется анонимный экземпляр класса что ли? И так как вызывает его принт,
-        # то все и печатается
-
-        # return matrix_line
 
 
 my_matrix = Matrix([[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3]])

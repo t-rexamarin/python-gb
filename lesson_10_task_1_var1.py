@@ -15,46 +15,38 @@
 Подсказка: сложение элементов матриц выполнять поэлементно.
 Первый элемент первой строки первой матрицы складываем с первым элементом первой строки второй матрицы и пр.
 """
+# это первый, более ленивый вариант
 
 
 class Matrix:
-    def __init__(self, my_list: [list]):
-        self.my_list = my_list
+    def __init__(self, matrix: [list]):
+        self.matrix = matrix
 
     def __str__(self):
         str_result = ''
-        # for elem in self.my_list[:-1]:
-        #     str_result += ' '.join(str(char) for char in elem) + '\n'
-        # for elem in self.my_list[-1]:
-        #     str_result += ' '.join(str(char) for char in elem)
-        # print(len(self.my_list))
 
         # подумать над более компактной записью
-        for i in range(len(self.my_list)):
-            if i == len(self.my_list) - 1:
-                str_result += ' '.join(str(char) for char in self.my_list[i])
+        for i in range(len(self.matrix)):
+            if i == len(self.matrix) - 1:
+                str_result += ' '.join(str(char) for char in self.matrix[i])
             else:
-                str_result += ' '.join(str(char) for char in self.my_list[i]) + '\n'
+                str_result += ' '.join(str(char) for char in self.matrix[i]) + '\n'
 
         return str_result
 
     def __add__(self, other):
         result_list = []
 
-        # matrix_line = [char for char in zip(self.my_list, other)]
-        # print(matrix_line)
         # TODO: проверка на одинаковую длинну
-        for key, line in enumerate(self.my_list):
-            # print(self.my_list[key] + other[key])
+        for key, line in enumerate(self.matrix):
             matrix_line = []
             for key2, char in enumerate(line):
-                # print(self.my_list[key][key2] + other[key][key2])
-                matrix_line.append(self.my_list[key][key2] + other[key][key2])
-            # print(matrix_line)
+                matrix_line.append(self.matrix[key][key2] + other[key][key2])
             result_list.append(matrix_line)
-        print(result_list)
+        return Matrix(result_list)
+
 
 my_matrix = Matrix([[1, 1, 1], [2, 2, 2], [3, 3, 3]])
 # print(my_matrix)
 my_matrix_2 = [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
-my_matrix.__add__(my_matrix_2)
+print(my_matrix.__add__(my_matrix_2))
