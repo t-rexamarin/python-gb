@@ -1,21 +1,21 @@
 my_project:
-  settings:
+  - settings:
     - __init__.py
     - dev.py
     - prod.py
-  mainapp:
+  - mainapp:
     - __init__.py
     - models.py
     - views.py
     - templates:
-        mainapp:
+      - mainapp:
         - base.html
         - index.html
-  authapp:
+  - authapp:
     - __init__.py
     - models.py
     - views.py
     - templates:
-        authapp:
+      - authapp:
         - base.html
         - index.html

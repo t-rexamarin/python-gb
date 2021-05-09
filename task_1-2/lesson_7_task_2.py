@@ -25,8 +25,8 @@ def line_formatter(line_f):
     else:
         print('Not str')
 
-# все что с : это ключи, остальное вложенное
 
+# все что с : это ключи, остальное вложенное
 with open('config.yaml', 'r', encoding='utf-8') as f:
     dir_list = {}
     line = f.readline().strip('\n')

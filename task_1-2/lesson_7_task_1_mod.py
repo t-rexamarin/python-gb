@@ -11,40 +11,38 @@
 можно ли будет при этом расширять конфигурацию и хранить данные о вложенных папках и файлах (добавлять детали)?
 """
 import os
-import itertools
 
 main_folder = input('Введите название проекта: ')
-sub_folders = {
-                'settings': 'settings',
-                'mainapp': 'mainapp',
-                'adminapp': 'adminapp',
-                'authapp': 'authapp',
-                'some_folder': {
-                        'some_sub_folder_1': 'some_sub_folder_1',
-                        'some_file': 'some_file.file',
-                        'some_sub_folder2': {
-                            'some_sub_sub_folder': 'some_sub_sub_folder',
-                            'some_file': 'some_file.file'
-                        }
-                }
-
-            }
-
-paths_config = {main_folder: sub_folders}
-# print(paths_config, type(paths_config[main_folder]))
+sub_folders = [
+                'settings',
+                'mainapp',
+                'adminapp',
+                'authapp',
+            ]
 
 
-def tree_builder(tree):
-    for key, value in tree.items():
+# TODO: сделать работу с вложенными папками
+def tree_builder(main_folder, sub_folders):
+    path = [main_folder]
+    for key, value in enumerate(sub_folders):
         if isinstance(value, dict):
-            # print('dict')
-            os.mkdir(key)
-            tree_builder(value)
-        # else:
-        #     print('not a dict')
+            pass
+            # print(value.values())
+            # tree_builder(value.keys(), value.items())
+            # # for key_sub, value_sub in enumerate(value):
+            # #     path.append(value_sub)
+            # #     os.makedirs(os.path.join(*path))
+            # #     # position = path.index(value_sub)
+            # #     # path.pop(position)
+            # #     tree_builder(path)
+        else:
+            path.append(value)
+            os.makedirs(os.path.join(*path))
+            position = path.index(value)
+            path.pop(position)
 
 
-tree_builder(paths_config)
+tree_builder(main_folder, sub_folders)
 
 # def tree_builder(tree):
 #     for key, val in tree.items():
