@@ -12,9 +12,6 @@
 """
 import os
 
-# main_dir = os.getcwd()
-
-# TODO: сделать через input
 main_folder = input('Введите название проекта: ')
 sub_folders = ['settings', 'mainapp', 'adminapp', 'authapp']
 

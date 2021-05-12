@@ -16,8 +16,6 @@ import os
 import shutil
 import re
 
-# находим файл и его путь root, перемещаем
-
 project_dir = 'my_project'
 
 files_list = []
@@ -25,8 +23,6 @@ for root, dirs, files in os.walk('my_project', topdown=True):
     for file in files:
         if file.endswith('.html'):
             files_list.append(f'{root}/{file}')
-
-project_dir = 'my_project'
 
 for file in files_list:
     reg_ex = re.compile(r'/templates/(?P<folder>\w+)/(?P<file>\w+\.html)')
