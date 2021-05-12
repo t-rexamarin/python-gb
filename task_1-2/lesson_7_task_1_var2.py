@@ -10,6 +10,8 @@
 как лучше хранить конфигурацию этого стартера, чтобы в будущем можно было менять имена папок под конкретный проект;
 можно ли будет при этом расширять конфигурацию и хранить данные о вложенных папках и файлах (добавлять детали)?
 """
+# не закончил с ней, хотел поиграться с вложенным словарями
+
 import os
 
 main_folder = input('Введите название проекта: ')
@@ -22,9 +24,9 @@ sub_folders = [
 
 
 # TODO: сделать работу с вложенными папками
-def tree_builder(main_folder, sub_folders):
-    path = [main_folder]
-    for key, value in enumerate(sub_folders):
+def tree_builder(my_main_folder, my_sub_folders):
+    path = [my_main_folder]
+    for key, value in enumerate(my_sub_folders):
         if isinstance(value, dict):
             pass
             # print(value.values())
@@ -43,32 +45,3 @@ def tree_builder(main_folder, sub_folders):
 
 
 tree_builder(main_folder, sub_folders)
-
-# def tree_builder(tree):
-#     for key, val in tree.items():
-#         print(val, type(val))
-#         if isinstance(val, dict):
-#             if not os.path.exists(key):
-#                 try:
-#                     os.mkdir(key)
-#                 except Exception as e:
-#                     print(f'Произошло необработанное исключение: {e}')
-
-
-# tree_builder(paths_config)
-
-# for main_dir in paths_config.keys():
-#     if not os.path.exists(main_dir):
-#         try:
-#             os.mkdir(main_dir)
-#         except Exception as e:
-#             print(f'Произошло необработанное исключение: {e}')
-#         else:
-#             for sub_folder in list(*paths_config.values()):
-#                 try:
-#                     os.mkdir(os.path.join(main_dir, sub_folder))
-#                 except Exception as e:
-#                     print(f'Произошло необработанное исключение: {e}')
-#                 # print(sub_folder)
-#     else:
-#         print(f'Проект с таким именем - {main_dir} - уже существует')

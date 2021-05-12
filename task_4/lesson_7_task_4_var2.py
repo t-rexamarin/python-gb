@@ -37,26 +37,9 @@ for root, dirs, files in os.walk('files', topdown=True):
             range_stop = list_range[1]
 
             if file_size in range(range_start, range_stop):
-                # print(list_range, file_size)
                 files_arr[range_stop] += 1
 
-    # print(max(files_size))
     files_arr.pop(0)
-
-
-
-        # for k, v in enumerate(keys_arr):
-        #     if file_size > keys_arr[k] and file_size < keys_arr[k+1]:
-
-    # print(keys_arr)
-
-        # не больше к, но больше к-1
-        # dict_to_list = list(enumerate(files_arr))
-        # for k, v in dict_to_list[1:]:
-        #     if file_size < dict_to_list[k] and file_size > dict_to_list[k-1]:
-        #         print(v)
-        #         # print(f'size > {k}')
-        #         files_arr[v] += 1
 
 print(files_arr)
 print(files_size)
